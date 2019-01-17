@@ -1,10 +1,17 @@
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   min-width: 200px;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 2fr auto;
   background-color: #101533;
-  color: #DDDDC9;
+  color: #ddddc9;
   margin: 0 auto;
-  font-size: 1.0rem;
+  font-size: 1rem;
   line-height: 1.1;
   letter-spacing: 1.125px;
   max-width: 900px;
@@ -15,8 +22,9 @@ body {
 }
 
 header {
+  grid-row: 1;
   text-align: center;
-  font-size: 2.0rem;
+  font-size: 2rem;
   line-height: 0;
   letter-spacing: 2.125px;
 }
@@ -29,6 +37,7 @@ header #art {
 }
 
 nav {
+  grid-row: 2;
   border: 1px solid #FFF1;
   border-width: 0 0 1px 0;
   text-align: center;
@@ -46,7 +55,7 @@ nav a {
   display: inline-block;
   text-decoration: none;
   font-variant: small-caps;
-  color: #DDDDC9;
+  color: #ddddc9;
   line-height: 20px;
 }
 nav a::after {
@@ -65,15 +74,12 @@ nav a:hover::after {
   width: 101%;
 }
 
-main {
-  max-width: 900px;
+main.about {
+  grid-row: 3;
   margin: 0 auto;
   padding: 20px;
 }
-main article {
-  text-align: left;
-}
-main article h2 {
+main.about h2 {
   display: inline-block;
   font-size: 2.5rem;
   line-height: 2rem;
@@ -83,14 +89,44 @@ main article h2 {
   background-color: #FBCB;
 }
 
+main.portfolio {
+  list-style: none;
+}
+main.portfolio ul.grid-container {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  grid-auto-rows: 240px;
+  grid-auto-flow: dense;
+}
+main.portfolio li {
+  display: list-item;
+  list-style: none;
+  margin: 10px;
+  border-radius: 50px;
+}
+main.portfolio img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50px;
+  box-shadow: 0 2px 2px #444;
+  display: block;
+  transition: all ease-out 250ms;
+}
+main.portfolio img:hover {
+  opacity: 0.9;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+
 footer {
-  position: relative;
-  margin-top: 15vh;
-  padding: 15px;
+  grid-row: 4;
+  padding: 5px;
   text-align: center;
   color: #666581;
   background-color: #111029;
-  box-shadow: 0 50vh 0 50vh #111029;
 }
 
 @media (min-width: 500px) {
@@ -100,8 +136,16 @@ footer {
     padding: 0px 30px 20px 0px;
   }
 
-  article {
+  main.about > article {
     padding: 70px 0px 0px 0px;
+  }
+
+  .run2 {
+    grid-column: span 2;
+  }
+
+  .rise2 {
+    grid-row: span 2;
   }
 }
 .about-image-container {
